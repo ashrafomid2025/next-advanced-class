@@ -18,6 +18,10 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
             alt={`${photo.id}`}
           />
         ))}
+        {/* intercepting routing, 
+        source 
+        destination
+        */}
       </div>
     </div>
   );

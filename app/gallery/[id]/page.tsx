@@ -1,26 +1,32 @@
-import React from "react";
-import { photos } from "@/app/lib/photoLib";
 import Image from "next/image";
-async function page({ params }: { params: Promise<{ id: string }> }) {
-  const photoid = (await params).id;
-  const photoidtoInteger = Number(photoid);
-  const currentPhoto = photos.filter((photo) => photo.id == photoidtoInteger);
+import wondersImages, { WonderImage } from "@/app/lib/photoLib";
+
+export default async function PhotoPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const photo: WonderImage = wondersImages.find((p) => p.id === id)!;
   return (
-    <div className="w-full mt-8 flex justify-center items-center">
-      <div className="w-96 h-96">
-        {currentPhoto.map((photo) => (
-          <Image
-            key={photo.id}
-            className="w-full h-full object-cover"
-            height={1000}
-            width={1000}
-            src={photo.url}
-            alt={`${photo.id}`}
-          />
-        ))}
+    <div className="container mx-auto my-10">
+      <div className="w-1/2 mx-auto">
+        <div>
+          <h1 className="text-center text-3xl font-bold my-4">{photo.name}</h1>
+        </div>
+        <Image
+          alt={photo.name}
+          width={1000}
+          height={1000}
+          src={photo.src}
+          className="w-full object-cover aspect-square "
+        />
+
+        <div className="bg-white py-4">
+          <h3>{photo.photographer}</h3>
+          <h3>{photo.location}</h3>
+        </div>
       </div>
     </div>
   );
 }
-
-export default page;

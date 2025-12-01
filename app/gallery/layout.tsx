@@ -30,6 +30,14 @@ export default function RootLayout(props: {
         {/* loading, template, error handling error*/}
         {props.modal}
         {props.children}
+        {/* api => application programming interface
+            software => software, api
+            REST API, Representational State Transfer Application programming interface
+            
+            source=> user/2
+            method=> GET, PUT, PATCH, DELETE, POST, OPTION
+            status code=>  200, 400, 500
+        */}
       </body>
     </html>
   );
